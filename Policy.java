@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Policy {
       // all instance fields of Policy class
       private int policy_number;
@@ -25,9 +27,15 @@ public class Policy {
          policyholder_weight = weight;
       }
       
+      // initializing scanner object to retrieve user data
+      Scanner input = new Scanner(System.in);
+      
    // getter and setter methods for each field
       // @param number the policy number
       public void setNumber(int number) {
+         System.out.println("Please enter the Policy Number: ");
+         policy_number = input.nextInt();
+         
          policy_number = number;
       }
       
@@ -39,6 +47,9 @@ public class Policy {
       
       // @param provider the provider name
       public void setProvider(String provider) {
+         System.out.println("Please enter the Provider Name: ");
+         provider_name = input.nextLine();
+         
          provider_name = provider;
       }
       
@@ -49,7 +60,10 @@ public class Policy {
       
 
       // @param first_name the policyholder's first name
-      public void setFirstName(String first_name) {
+      public void setFirstName(String first_name) {         
+         System.out.println("Please enter the Policyholder’s First Name: ");
+         policyholder_first_name = input.nextLine();
+         
          policyholder_first_name = first_name;
       }
       
@@ -61,6 +75,9 @@ public class Policy {
 
       // @param last_name the policyholder's last name
       public void setLastName(String last_name) {
+         System.out.println("Please enter the Policyholder’s Last Name: ");
+         policyholder_last_name = input.nextLine();
+         
          policyholder_last_name = last_name;
       }
       
@@ -72,6 +89,9 @@ public class Policy {
 
       // @param age the policyholder's age
       public void setAge(int age) {
+         System.out.println("Please enter the Policyholder’s Age: ");
+         policyholder_age = input.nextInt();
+         
          policyholder_age = age;
       }
       
@@ -84,6 +104,11 @@ public class Policy {
        // @param status the policyholder's smoking status
        // status keywords are "smoker" or "non-smoker"
       public void setStatus(String status) {
+         System.out.println("Please enter the Policyholder’s Smoking Status (smoker/non-smoker): ");
+         policyholder_smoking_status = input.nextLine();
+         
+         // while(policyholder_smoking_status != "smoker" || policyholder_smoking_status != "non-smoker")
+         
          policyholder_smoking_status = status;
       }
       
@@ -96,6 +121,9 @@ public class Policy {
       // @param height the policyholder's height, in inches
       // height should be in inches
       public void setHeight(double height) {
+         System.out.println("Please enter the Policyholder’s Height (in inches): ");
+         policyholder_height = input.nextDouble();
+         
          policyholder_height = height;
       }
       
@@ -108,6 +136,9 @@ public class Policy {
       // @param weight the policyholder's weight, in pounds
       // weight should be in pounds
       public void setWeight(double weight) {
+         System.out.println("Please enter the Policyholder’s Weight (in pounds): ");
+         policyholder_weight = input.nextDouble();
+         
          policyholder_weight = weight;
       }
       
@@ -115,4 +146,31 @@ public class Policy {
       public double getWeight() {
          return policyholder_weight;
       }
+      
+      
+      // @param BMI the policyholder's BMI
+      // @return the newlt calculated policyholder's BMI
+      public double calcBMI(double weight, double height) {
+         double BMI = (weight * 703 ) / (height * height);
+         
+         return BMI;
+      }
+      
+      
+      /*
+      // @param price the policyholder's insurance policy price based on a number of factors
+      public double calcInsurancePolicy(int policyholder_age, String policyholder_smoking_status, double BMI) {
+      // initializing method variables
+         double BASE_FEE = 600; // 600 for the base fee of the insurance policy
+         double AGE_FEE = 75;
+         double SMOKER_FEE = 100;
+         double BMI_FEE = (BMI - 35) * 20;
+         
+         // call methods to retreive data? and if-else statements, maybe with validation?
+                           
+         // double price = BASE_FEE + AGE_FEE + SMOKER_FEE + BMI_FEE;
+         
+         return price;
+      }
+      */
 }
