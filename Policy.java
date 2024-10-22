@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Policy {
       // all instance fields of Policy class
-      private int policy_number;
+      private String policy_number;
       private String provider_name;
       private String policyholder_first_name;
       private String policyholder_last_name;
@@ -16,7 +16,7 @@ public class Policy {
       }
       
       // parametrized constructor that accepts all neccessary arguments to fully initialize the Policy object
-      public Policy(int number, String provider, String first_name, String last_name, int age, String status, double height, double weight) { 
+      public Policy(String number, String provider, String first_name, String last_name, int age, String status, double height, double weight) { 
          policy_number = number;
          provider_name = provider;
          policyholder_first_name = first_name;
@@ -32,15 +32,15 @@ public class Policy {
       
    // getter and setter methods for each field
       // @param number the policy number
-      public void setNumber(int number) {
+      public void setNumber(String number) {
          System.out.println("Please enter the Policy Number: ");
-         policy_number = input.nextInt();
+         policy_number = input.nextLine();
          
          policy_number = number;
       }
       
       // @return the policy number
-      public int getNumber() {
+      public String getNumber() {
          return policy_number;
       }
       
@@ -150,27 +150,41 @@ public class Policy {
       
       // @param BMI the policyholder's BMI
       // @return the newlt calculated policyholder's BMI
-      public double calcBMI(double weight, double height) {
-         double BMI = (weight * 703 ) / (height * height);
-         
-         return BMI;
+      public double calcBMI() {
+         return (policyholder_weight * 703) / (policyholder_height * policyholder_height); // = BMI
       }
       
       
-      /*
+      
       // @param price the policyholder's insurance policy price based on a number of factors
-      public double calcInsurancePolicy(int policyholder_age, String policyholder_smoking_status, double BMI) {
-      // initializing method variables
-         double BASE_FEE = 600; // 600 for the base fee of the insurance policy
-         double AGE_FEE = 75;
-         double SMOKER_FEE = 100;
-         double BMI_FEE = (BMI - 35) * 20;
+      public double calcInsurancePolicy() {
+         // initializing method variables
+         final double BASE_FEE = 600; // 600 for the base fee of the insurance policy
+         final double AGE_FEE = 75;
+         final double SMOKER_FEE = 100;
+         final double BMI_FEE = 20; // 20 minimum
          
-         // call methods to retreive data? and if-else statements, maybe with validation?
-                           
-         // double price = BASE_FEE + AGE_FEE + SMOKER_FEE + BMI_FEE;
+         double price = BASE_FEE;
          
+         final int AGE_THRESHOLD = 50;
+         final int BMI_THRESHOLD = 35;
+         
+         // if statements to determine if conditions apply to policyholder, if so, add fee
+         if(policyholder_age > AGE_THRESHOLD) { // over 50 years
+            price += AGE_FEE; // $75 fee
+         }
+            
+         if(policyholder_smoking_status.equalsIgnoreCase("smoker")) {
+            price += SMOKER_FEE; // $100 fee
+         }
+               
+         // calls calcBMI method
+         if(calcBMI() > BMI_THRESHOLD) { // BMI over 35
+            price += ((calcBMI() - BMI_THRESHOLD) * BMI_FEE);
+         }
+
+         
+      // @return price of policy after fees applied    
          return price;
       }
-      */
 }
