@@ -149,7 +149,7 @@ public class Policy {
       
       
       // @param BMI the policyholder's BMI
-      // @return the newlt calculated policyholder's BMI
+      // @return the policyholder's BMI
       public double calcBMI() {
          return (policyholder_weight * 703) / (policyholder_height * policyholder_height); // = BMI
       }
